@@ -1,0 +1,81 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-attachment: fixed;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a2e;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(95, 0, 248, 0.25);
+
+
+  .field input {
+    margin-bottom: 20px;
+    background: #111122;
+    color: #dfdcff;
+    border: 1px solid rgba(95, 0, 248, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    transition: border 0.3s ease;
+  }
+
+  .field input:focus {
+    border-color: rgba(122, 51, 255, 0.7);
+  }
+
+  .field input::placeholder {
+    color: #7a6dad;
+  }
+
+  .field select {
+    margin-bottom: 20px;
+    background: #111122;
+    color: #dfdcff;
+    border: 1px solid rgba(95, 0, 248, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+    transition: border 0.3s ease;
+    appearance: none;
+  }
+
+  .field select:focus {
+    border-color: rgba(122, 51, 255, 0.7);
+  }
+
+  .field select::placeholder {
+    color: #7a6dad;
+  }
+
+  .butoum {
+
+    button {
+      background: #502f8d;
+      color: #dbdbdb;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+
+      &:hover {
+        background: #420da5;
+      }
+    }
+  }
+}

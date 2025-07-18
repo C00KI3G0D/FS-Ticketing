@@ -1,0 +1,14 @@
+<div class="signup">
+    <form [formGroup]= "signupForm" (ngSubmit)="onSubmit()">
+        <label class="title">Signup</label>
+        <input type="name" formControlName="name" placeholder="Name" required>
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <input type="text" formControlName="number" placeholder="Number" required>
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <button type="submit" class="get">Sign up</button>
+        <label class="or">or</label>
+        <button type="button">Log In</button>
+    </form>
+    <div *ngIf="signupError" class="error-message">{{ signupError }}</div>
+    <div *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</div>
+</div>

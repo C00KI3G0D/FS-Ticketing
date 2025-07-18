@@ -1,0 +1,30 @@
+<div class="table">
+  <div class="table-header">
+
+  </div>
+  <ul class="tasks">
+    <li>
+      <div>ID</div>
+      <div>Topic</div>
+      <div>Client's Name</div>
+      <div>State</div>
+      <div>Responsible</div>
+    </li>
+
+    <li class="selection">
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="idFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="topicFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="clientNameFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="stateFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="responsibleFilter" (input)="filterTasks()"></div>
+    </li>
+
+    <li *ngFor="let task of filteredTasks">
+      <div>{{ task.id }}</div>
+      <div>{{ task.topic }}</div>
+      <div>{{ task.clientName }}</div>
+      <div>{{ task.state }}</div>
+      <div>{{ task.responsible }}</div>
+    </li>
+  </ul>
+</div>

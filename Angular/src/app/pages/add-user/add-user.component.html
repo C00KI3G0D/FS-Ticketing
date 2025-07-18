@@ -1,0 +1,32 @@
+<div class="table">
+  <div class="user-form">
+    <form [formGroup]="userForm" (submit)="onSubmit()">
+      <div class="field">
+        <input type="text" placeholder="Nome" formControlName="name" required="">
+      </div>
+
+      <div class="field">
+        <select formControlName="role">
+          <option value="Empregado">Empregado</option>
+          <option selected value="Cliente">Cliente</option>
+          </select>
+      </div>
+
+      <div class="field">
+        <input type="text" placeholder="Número" formControlName="number" required="">
+      </div>
+
+      <div class="field">
+        <input type="email" placeholder="Email" formControlName="email" required="">
+      </div>
+
+      <div class="field">
+        <input type="Pass" placeholder="Password" formControlName="pass" required="">
+      </div>
+
+      <div class="butoum">
+        <button class="add-user-btn" onclick="location.href='http://localhost:4200/users';">Criar Utilizador</button>
+      </div>
+    </form>
+  </div>
+</div>

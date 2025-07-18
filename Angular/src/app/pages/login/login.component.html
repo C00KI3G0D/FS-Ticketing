@@ -1,0 +1,12 @@
+<div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <label class="title">Login</label>
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <button type="submit" class="get">Get In</button>
+        <label class="or">or</label>
+        <button type="button">Sign UP</button>
+    </form>
+    <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+    <div *ngIf="loginSuccess" class="success-message">{{ loginSuccess }}</div>
+</div>

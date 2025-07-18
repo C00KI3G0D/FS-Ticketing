@@ -1,0 +1,103 @@
+:host {
+
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    line-height: 1.6;
+
+}
+
+.table {
+    padding-top: 150px;
+    width: 80vw;
+    margin: 0px auto;
+
+    .table-header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    .add-user-btn {
+        background-color: #4e00ca;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 4px 6px rgba(100, 0, 255, .5);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .add-user-btn:hover {
+        background-color: #4f00e0;
+        box-shadow: 0 6px 8px rgba(122, 51, 255, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .users {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 10vh;
+        border-radius: 12px;
+        overflow: hidden;
+        height: 100vh;
+        
+
+        .selection {
+            background: #111122;
+            display: flex;
+            align-items: center;
+            height: 55px;
+
+            .search input {
+                background: #1a1a2e;
+                border: 1px solid rgba(95, 0, 248, 0.3);
+                color: #dfdcff;
+                border-radius: 7.5px;
+                font-size: 0.95rem;
+                outline: none;
+                text-align: center;
+                width: 130px;
+            }
+
+            .search input:focus {
+                border-color: rgba(95, 0, 248, 0.6);
+            }
+
+            .services .selection .search input::placeholder {
+                color: #7a6dad;
+            }
+
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            background: #1a1a2e;
+            color: #dfdcff;
+
+            &:first-child {
+                background: rgba(135, 61, 255, 0.15);
+                font-weight: 600;
+                color: #c9dcff;
+            }
+
+            &:not(:first-child, .selection):hover {
+                background: rgba(95, 0, 248, 0.08);
+            }
+
+            div {
+                text-align: 1;
+                text-align: center;
+                width: 100%;
+                padding: 0.75rem;
+                font-size: 0.95rem;
+                overflow: hidden;
+                text-overflow:ellipsis;
+            }
+        }
+    }
+}
