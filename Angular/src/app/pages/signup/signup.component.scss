@@ -8,9 +8,9 @@
 }
 
 .signup{
-	width: 300px;
-	height: 600px;
-	padding: 30px;
+	width: 25vw;
+	height: 80vh;
+	padding: 0px;
 	background: inherit;
 	overflow: hidden;
 	border-radius: 25px;
@@ -21,18 +21,17 @@
 	flex-direction: column;
 	box-shadow: rgba(.10, .10, .10, .10) 0px 54px 55px, rgba(.12, .12, .12, .12) 0px -12px 30px, rgba(.12, .12, .12, .12) 0px 4px 6px, rgba(0, 0, 0, 0) 0px 12px 13px, rgba(0, 0, 0, .09) 0px -3px 5px;
 	backdrop-filter: blur(25px);
-	-webkit-backdrop-filter: blur(10%);
+	-webkit-backdrop-filter: blur(50%);
+	
 }
 
 label{
 	color: #fff;
-	font-size: 2.3em;
+	font-size: 2.5em;
 	justify-content: center;
 	display: flex;
-	padding: 0px;
 	font-weight: bold;
-	cursor: pointer;
-	transition: .7s ease-in-out;
+	cursor: default;
 }
 
 input{
@@ -51,14 +50,13 @@ input{
 button{
 	width: 60%;
 	height: 40px;
-	margin: 10px auto;
+	margin: auto;
 	justify-content: center;
 	display: block;
 	color: #fff;
 	background: #502f8d;
 	font-size: 1em;
 	font-weight: bold;
-	margin-top: 20px;
 	outline: none;
 	border: none;
 	border-radius: 5px;
@@ -66,6 +64,20 @@ button{
 	cursor: pointer;
 }
 
+button.sign{
+	margin-top: 25px;
+}
+
+button.log{
+	margin-top: 5px;
+}
+
 button:hover{
 	background: #420da5;
+}
+
+div.error-message{
+	color: #fff;
+	text-align: center;
+	
 }

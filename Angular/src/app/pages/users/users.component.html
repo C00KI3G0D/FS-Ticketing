@@ -4,23 +4,23 @@
     </div>
     <ul class="users">
         <li>
-            <div>Nome</div>
-            <div>Role</div>
+            <div>Primeiro Nome</div>
+            <div>Último Nome</div>
             <div>Número</div>
             <div>Email</div> 
         </li>
 
         <li class="selection">
 
-            <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="nameFilter" (input)="filterUsers()"></div>
-            <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="roleFilter" (input)="filterUsers()"></div>
+            <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="firstNameFilter" (input)="filterUsers()"></div>
+            <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="lastNameFilter" (input)="filterUsers()"></div>
             <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="numberFilter" (input)="filterUsers()"></div>
             <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="emailFilter" (input)="filterUsers()"></div>
         </li>
 
-        <!-- Info da tabela de utilizadores declarados no TypeScript da home e exportados no users.model -->
         <li *ngFor="let user of filteredUsers">
-            <div>{{ user.name }}</div>
+            <div>{{ user.firstName }}</div>
+            <div>{{ user.lastName }}</div>
             <div>{{ user.role }}</div>
             <div>{{ user.number }}</div>
             <div>{{ user.email }}</div>

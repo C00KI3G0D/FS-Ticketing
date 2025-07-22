@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -29,27 +30,25 @@ export class LoginComponent implements OnInit {
     this.open = !this.open;
   }
 
-onSubmit(): void {
-  this.loginError = '';
-  this.loginSuccess = '';
-  if (this.loginForm.valid) {
-    let subscription: Subscription = this.userService.login(this.loginForm.value).subscribe({
-      next: (response: String) => {
-        
-        console.log("Success!");
-        this.loginSuccess = 'User signed-in successfully!.';
+  onSubmit(): void {
+    this.loginError = '';
+    this.loginSuccess = '';
+    if (this.loginForm.valid) {
+      let subscription: Subscription = this.userService.login(this.loginForm.value).subscribe({
+        next: (response: String) => {
+          
+          console.log("Success!");
+          this.loginSuccess = 'User signed-in successfully!.';
 
-        this.router.navigate(['/'])
-      }, 
-      complete: () => {
-        subscription.unsubscribe();
-      }
-    });
+          this.router.navigate(['/'])
+        }, 
+        complete: () => {
+          subscription.unsubscribe();
+        }
+      });
 
-    
-
-  } else {
-    this.loginError = 'Please fill in all required fields correctly.';
+    } else {
+      this.loginError = 'Please fill in all required fields correctly.';
+    }
   }
-}
 }

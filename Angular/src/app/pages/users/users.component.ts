@@ -15,7 +15,8 @@ export class UsersComponent implements OnInit{
   filteredUsers: User[] = [];
 
   idFilter: string = '';
-  nameFilter: string = '';
+  firstNameFilter: string = '';
+  lastNameFilter: String = '';
   roleFilter: string = '';
   numberFilter: string = '';
   emailFilter: string = '';
@@ -44,7 +45,8 @@ export class UsersComponent implements OnInit{
 
   filterUsers(): void {
     this.filteredUsers = this.users.filter(user => 
-      user.name.toLowerCase().includes(this.nameFilter.toLowerCase()) &&
+      user.firstName.toLowerCase().includes(this.firstNameFilter.toLowerCase()) &&
+      user.lastName.toLowerCase().includes(this.lastNameFilter.toLowerCase()) &&
       user.role.toLowerCase().includes(this.roleFilter.toLowerCase()) &&
       user.number.toString().toLowerCase().includes(this.numberFilter.toLowerCase()) &&
       user.email.toLowerCase().includes(this.emailFilter.toLowerCase())

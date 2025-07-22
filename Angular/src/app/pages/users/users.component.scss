@@ -1,8 +1,13 @@
 :host {
-
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    line-height: 1.6;
+    line-height: 1.5;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
 
+.table::-webkit-scrollbar{
+    display: none;
 }
 
 .table {

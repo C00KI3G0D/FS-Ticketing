@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,32 +10,47 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
-  signupForm: FormGroup;
-  signupError: any;
-  signupSuccess: any;
+export class SignupComponent implements OnInit {
   public open: boolean = false;
-  loginError: any;
+  signupForm: FormGroup;
+  signupError: string = '';
+  signupSuccess: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.signupForm = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      number: ['', [Validators.required, Validators.minLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
-  onSubmit() {
-    if (this.signupForm.valid) {
-      // Implement signup logic here
-      this.signupSuccess = 'Signup successful!';
-      this.signupError = null;
-    } else {
-      this.signupError = 'Please fill in the form correctly.';
-      this.signupSuccess = null;
-    }
-  }
+  ngOnInit(): void {}
 
   toggle(): void {
     this.open = !this.open;
+  }
+
+  onSubmit(): void {
+    this.signupError = '';
+    this.signupSuccess = '';
+
+    if (this.signupForm.valid) {
+      let subscription: Subscription = this.userService.signup(this.signupForm.value).subscribe({
+        next: (response: string) => {
+          console.log(" !");
+          this.signupSuccess = 'User signed up successfully!';
+          this.router.navigate(['/']);
+        },
+        error: (error: 200) => {
+          console.log("Error:", error);
+          this.signupError = 'Utilizador criado com sucesso';
+        },
+        complete: () => {
+          subscription.unsubscribe();
+        }
+      });
+    }
   }
 }

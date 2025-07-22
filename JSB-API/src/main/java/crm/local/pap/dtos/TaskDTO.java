@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class TaskDTO {
 
-     private String name;
+    private String name;
     private BigDecimal price;
     private Duration time;
     private String state;

@@ -8,7 +8,7 @@ import { SignupComponent } from "./signup.component";
     imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ]
 })
 export class SignupModule {}

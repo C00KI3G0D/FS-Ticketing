@@ -25,17 +25,23 @@ export interface JwtAuthResponse {
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
+  tokenService: any;
 
   constructor(private http: HttpClient) {}
 
-  login(loginRequest: LoginRequest): Observable<JwtAuthResponse> {
-    return this.http.post<JwtAuthResponse>(`${this.apiUrl}/login`, loginRequest).pipe(
-      tap(response => {
-        localStorage.setItem('accessToken', response.accessToken);
-      })
-    );
+  refreshToken() {
+    return this.http.post(`${this.apiUrl}/auth/refresh`, {
+      token: this.tokenService.getToken()
+    }).subscribe((response: any) => {
+      this.tokenService.setToken(response.newAccessToken);
+    });
+  } 
+
+  login(loginRequest: LoginRequest): Observable<any> {
+    return this.http.post<void> (`${this.apiUrl}/login`, loginRequest, { withCredentials: true });
   }
 
   signup(signupRequest: SignupRequest): Observable<any> {

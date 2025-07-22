@@ -1,80 +1,92 @@
 :host {
-	display: block;
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-attachment: fixed;
-}
+  display: block;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-attachment: fixed;
 
-.login {
-	width: 300px;
-	height: 425px;
-	padding: 30px;
-	background: inherit;
-	overflow: hidden;
-	border-radius: 25px;
-	transition: .8s ease-in-out;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	box-shadow: rgba(.10, .10, .10, .10) 0px 54px 55px, rgba(.12, .12, .12, .12) 0px -12px 30px, rgba(.12, .12, .12, .12) 0px 4px 6px, rgba(0, 0, 0, 0) 0px 12px 13px, rgba(0, 0, 0, .09) 0px -3px 5px;
-	backdrop-filter: blur(25px);
-	-webkit-backdrop-filter: blur(10%);
+  .login {
+    width: 300px;
+    height: 425px;
+    padding: 30px;
+    background: inherit;
+    overflow: hidden;
+    border-radius: 25px;
+    transition: 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow:
+      rgba(0.1, 0.1, 0.1, 0.1) 0 54px 55px,
+      rgba(0.12, 0.12, 0.12, 0.12) 0 -12px 30px,
+      rgba(0.12, 0.12, 0.12, 0.12) 0 4px 6px,
+      rgba(0, 0, 0, 0) 0 12px 13px,
+      rgba(0, 0, 0, 0.09) 0 -3px 5px;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(10%);
 
-	form {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-	label.title {
-		color: #dbdbdb;
-		font-size: 2.5rem;
-		font-weight: bold;
-		transition: .7s ease-in-out;
-		margin-bottom: 40px;
-	}
+    label.title {
+      color: #dbdbdb;
+      font-size: 2.5rem;
+      font-weight: bold;
+      transition: 0.7s ease-in-out;
+      margin-bottom: 5vh;
+    }
 
-	input {
-		position: relative;
-		width: 80%;
-		padding: 10px;
-		border: none;
-		outline: none;
-		border-radius: 5px;
-		background: #dbdbdb;
-		font-size: 1em;
-		margin: 10px;
-	}
+    input {
+      position: relative;
+      width: 90%;
+      padding: 10px;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      background: #dbdbdb;
+      font-size: 1em;
 
-	button {
-		width: 90%;
-		height: 40px;
-		color: #dbdbdb;
-		background: #502f8d;
-		font-size: 1em;
-		font-weight: bold;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		transition: .2s ease-in;
-	}
+	  &.email{
+		margin-bottom: 3vh;
+	  }
 
-	button.get {
-		margin-top: 20px;
-	}
+	  &.password{
+		margin-bottom: 7.5vh;
+	  }
 
-	button:hover {
-		background: #420da5;
-	}
+    }
 
-	label.or {
-		color: #dbdbdb;
-		font-size: large;
-	}
+    button {
+      width: 90%;
+      height: 6vh;
+      color: #dbdbdb;
+      background: #502f8d;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s ease-in;
 
+      &:hover {
+        background: #420da5;
+      }
+    }
+
+    label.or {
+      color: #fff;
+      font-size: 1.5em;
+      justify-content: center;
+      font-weight: normal;
+      cursor: default;
+      margin: 0.75vh;
+    }
+  }
 }
