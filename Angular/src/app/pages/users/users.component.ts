@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
+import { UserResponse } from '../../models/responses/user-response';
+import { Role } from '../../models/role';
 
 @Component({
   selector: 'app-users',
@@ -11,8 +12,8 @@ import { UserService } from '../../services/user.service';
 
 export class UsersComponent implements OnInit{
 
-  users: User[] = [];
-  filteredUsers: User[] = [];
+  users: UserResponse[] = [];
+  filteredUsers: UserResponse[] = [];
 
   idFilter: string = '';
   firstNameFilter: string = '';
@@ -35,7 +36,7 @@ export class UsersComponent implements OnInit{
 
   public getUsers(): void {
     this.userService.getUsers().subscribe({
-      next: (users: User[]) => {
+      next: (users: UserResponse[]) => {
         this.users = users;
         this.filteredUsers = users;
       },
@@ -47,7 +48,7 @@ export class UsersComponent implements OnInit{
     this.filteredUsers = this.users.filter(user => 
       user.firstName.toLowerCase().includes(this.firstNameFilter.toLowerCase()) &&
       user.lastName.toLowerCase().includes(this.lastNameFilter.toLowerCase()) &&
-      user.role.toLowerCase().includes(this.roleFilter.toLowerCase()) &&
+      user.roles.some((role: Role) => role.name.toLowerCase().includes(this.roleFilter.toLowerCase())) &&
       user.number.toString().toLowerCase().includes(this.numberFilter.toLowerCase()) &&
       user.email.toLowerCase().includes(this.emailFilter.toLowerCase())
     );

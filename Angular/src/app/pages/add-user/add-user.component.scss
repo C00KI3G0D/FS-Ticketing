@@ -7,75 +7,86 @@
   background-attachment: fixed;
 }
 
-.user-form {
+.addUser {
+  width: 275px;
+  height: 500px;
+  padding: 0px;
+  background: inherit;
+  overflow: hidden;
+  border-radius: 25px;
+  transition: .8s ease-in-out;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  background-color: #1a1a2e;
-  padding: 2rem;
-  border-radius: 12px;
+  box-shadow: rgba(.10, .10, .10, .10) 0px 54px 55px, rgba(.12, .12, .12, .12) 0px -12px 30px, rgba(.12, .12, .12, .12) 0px 4px 6px, rgba(0, 0, 0, 0) 0px 12px 13px, rgba(0, 0, 0, .09) 0px -3px 5px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(50%);
+}
+
+label {
+  color: #fff;
+  display: flex;
+  font-size: 2.5rem;
+  justify-content: center;
+  font-weight: bold;
+  cursor: default;
+  margin-bottom: 25px;
+}
+
+input {
   width: 100%;
-  margin: 0;
-  box-shadow: 0 4px 12px rgba(95, 0, 248, 0.25);
+	height: 20px;
+	background: #e0dede;
+	justify-content: center;
+	display: flex;
+	margin: 15px auto;
+	padding: 20px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+}
 
+button {
+  width: 60%;
+  height: 40px;
+  font-size: 1.375rem;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: none;
+  display: flex;
+  border: none;
+  display: block;
+  color: #ffffff;
+  background: #420da5;
+  transition: .2s ease-in;
+  justify-content: center;
+  cursor: pointer;
+  margin: 7.5px auto;
 
-  .field input {
-    margin-bottom: 20px;
-    background: #111122;
-    color: #dfdcff;
-    border: 1px solid rgba(95, 0, 248, 0.3);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    outline: none;
-    width: 100%;
-    transition: border 0.3s ease;
+  &.add{
+		margin-top: 25px;
+    font-size: 1.175rem;
+	}
+
+  &:hover {
+    background: #502f8d;
+  }
+}
+
+div{
+  text-align: center;
+
+  &.error-message {
+    color: #ce3232;
+    padding-top: 30px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
   }
 
-  .field input:focus {
-    border-color: rgba(122, 51, 255, 0.7);
-  }
-
-  .field input::placeholder {
-    color: #7a6dad;
-  }
-
-  .field select {
-    margin-bottom: 20px;
-    background: #111122;
-    color: #dfdcff;
-    border: 1px solid rgba(95, 0, 248, 0.3);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    outline: none;
-    width: 100%;
-    transition: border 0.3s ease;
-    appearance: none;
-  }
-
-  .field select:focus {
-    border-color: rgba(122, 51, 255, 0.7);
-  }
-
-  .field select::placeholder {
-    color: #7a6dad;
-  }
-
-  .butoum {
-
-    button {
-      background: #502f8d;
-      color: #dbdbdb;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-
-
-      &:hover {
-        background: #420da5;
-      }
-    }
+  &.success-message {
+    color: #30e836;
+    padding-top: 30px;
   }
 }

@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import crm.local.pap.enums.RoleType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,9 +27,6 @@ import lombok.ToString;
 
 public class Role {
 
-    /*@GeneratedValue(strategy = GenerationType.UUID)
-    public UUID id;*/
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
@@ -36,6 +35,7 @@ public class Role {
     @jakarta.persistence.Column(nullable = false, unique = true)
     private RoleType name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 

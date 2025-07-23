@@ -1,26 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { LoginRequest } from '../models/requests/login-request';
+import { SignupRequest } from '../models/requests/signup-request';
+import { LoginResponse } from '../models/responses/login-response';
+import { AddUserRequest } from '../models/requests/adduser-request';
 
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-export interface SignupRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  number: string;
-  password: string;
-}
-
-export interface JwtAuthResponse {
-  accessToken: string;
-  tokenType: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -32,20 +18,16 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  refreshToken() {
-    return this.http.post(`${this.apiUrl}/auth/refresh`, {
-      token: this.tokenService.getToken()
-    }).subscribe((response: any) => {
-      this.tokenService.setToken(response.newAccessToken);
-    });
-  } 
-
-  login(loginRequest: LoginRequest): Observable<any> {
-    return this.http.post<void> (`${this.apiUrl}/login`, loginRequest, { withCredentials: true });
+  login(loginRequest: LoginRequest): Observable<HttpResponse<LoginResponse>> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginRequest, { observe: 'response', withCredentials: true });
   }
 
-  signup(signupRequest: SignupRequest): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, signupRequest);
+  signup(signupRequest: SignupRequest): Observable<HttpResponse<{ message: string }>> {
+    return this.http.post<{ message: string }>(`${this.apiUrl}/signup`, signupRequest, { observe: 'response', withCredentials: true });
+  }
+
+  user(userRequest: AddUserRequest): Observable<HttpResponse<{ message: string }>> {
+    return this.http.post<{ message: string }>(`${this.apiUrl}/signup`, userRequest, { observe: 'response', withCredentials: true });
   }
 
   logout(): void {

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { HttpResponse } from '@angular/common/http';
+import { LoginResponse } from '../../models/responses/login-response';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   loginError: string = '';
   loginSuccess: string = '';
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
@@ -35,12 +37,21 @@ export class LoginComponent implements OnInit {
     this.loginError = '';
     this.loginSuccess = '';
     if (this.loginForm.valid) {
-      let subscription: Subscription = this.userService.login(this.loginForm.value).subscribe({
-        next: (response: HttpResponse<{ message: string }>) => {
-          if(response.ok === true) return;
+      let subscription: Subscription = this.authService.login(this.loginForm.value).subscribe({
+        next: (response: HttpResponse<LoginResponse>) => {
+          if(response.ok === false) {
+            this.loginError = 'Login invalido.';
+            return
+          };
 
-          console.log("Success!");
+          if(response.body == null) {
+            this.loginError = 'Login invalido.';
+            return
+          };
+          
           this.loginSuccess = 'User signed-in successfully!.';
+          
+          localStorage.setItem('accessToken', response.body.accessToken)
 
           this.router.navigate(['/'])
         }, 

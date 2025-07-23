@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 
 @Service
@@ -46,8 +47,23 @@ public class JwtProvider {
                 .build()
                 .parseClaimsJws(token);
             return true;
-        } catch (Exception ex) {
-            return false;
+        } catch (Exception e) {
+            System.out.println("Token invalid");
+        }
+
+        return false;
+    }
+
+    public boolean isTokenExpired(String token) {
+        try {
+            Claims claims = Jwts.parser()
+                .setSigningKey(this.publicKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+            return claims.getExpiration().before(new Date());
+        } catch (JwtException e) {
+            return true;
         }
     }
 

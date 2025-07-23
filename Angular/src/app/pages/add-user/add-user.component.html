@@ -1,32 +1,13 @@
-<div class="table">
-  <div class="user-form">
-    <form [formGroup]="userForm" (submit)="onSubmit()">
-      <div class="field">
-        <input type="text" placeholder="Nome" formControlName="name" required="">
-      </div>
-
-      <div class="field">
-        <select formControlName="role">
-          <option value="Empregado">Empregado</option>
-          <option selected value="Cliente">Cliente</option>
-          </select>
-      </div>
-
-      <div class="field">
-        <input type="text" placeholder="Número" formControlName="number" required="">
-      </div>
-
-      <div class="field">
-        <input type="email" placeholder="Email" formControlName="email" required="">
-      </div>
-
-      <div class="field">
-        <input type="Pass" placeholder="Password" formControlName="pass" required="">
-      </div>
-
-      <div class="butoum">
-        <button class="add-user-btn" onclick="location.href='http://localhost:4200/users';">Criar Utilizador</button>
-      </div>
+<div class="addUser">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <label class="title">Add User</label>
+        <input type="name" formControlName="firstName" placeholder="Primeiro Nome" required>
+        <input type="name" formControlName="lastName" placeholder="Último Nome" required>
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <input type="text" formControlName="number" placeholder="Número" required>
+        <input type="password" formControlName="password" placeholder="Password Genérica" required>
+        <button type="submit" class="add">Criar Perfil</button>
     </form>
-  </div>
 </div>
+<div *ngIf="userSuccess" class="success-message">{{ userSuccess }}</div>
+<div *ngIf="userError" class="error-message">{{ userError }}</div>

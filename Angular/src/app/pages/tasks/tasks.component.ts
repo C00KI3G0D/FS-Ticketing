@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from '../../services/task.service';
+import { TaskResponse } from '../../models/responses/task-response';
 
 @Component({
   selector: 'app-tasks',
@@ -6,34 +8,47 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
+
 export class TasksComponent implements OnInit {
 
-  tasks = [
-    { id: 1, topic: 'Task 1', clientName: 'Client A', state: 'Open', responsible: 'John' },
-    { id: 2, topic: 'Task 2', clientName: 'Client B', state: 'In Progress', responsible: 'Jane' },
-    { id: 3, topic: 'Task 3', clientName: 'Client C', state: 'Closed', responsible: 'Doe' }
-  ];
-  filteredTasks = [...this.tasks];
+  tasks: TaskResponse[] = [];
+  filteredTasks: TaskResponse[] = [];
 
-  idFilter: string = '';
-  topicFilter: string = '';
+  taskIdFilter: string = '';
   clientNameFilter: string = '';
+  topicFilter: string = '';
   stateFilter: string = '';
-  responsibleFilter: string = '';
+  responsibleNameFilter: string = '';
 
-  constructor() {}
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
-    this.filterTasks();
+    this.taskService.getTask().subscribe(tasks =>{
+      this.tasks = tasks;
+      this.filteredTasks = tasks;
+    });
+    this.getTasks();
+  }
+
+  public getTasks(): void {
+    this.taskService.getTask().subscribe({
+      next: (tasks: TaskResponse[]) => {
+        this.tasks = tasks;
+        this.filteredTasks = tasks;
+      },
+      error: (err: any) => console.log(err)
+    });
   }
 
   filterTasks(): void {
     this.filteredTasks = this.tasks.filter(task =>
-      task.id.toString().toLowerCase().includes(this.idFilter.toLowerCase()) &&
+      task.taskId.toString().toLowerCase().includes(this.taskIdFilter.toLowerCase()) &&
       task.topic.toLowerCase().includes(this.topicFilter.toLowerCase()) &&
       task.clientName.toLowerCase().includes(this.clientNameFilter.toLowerCase()) &&
       task.state.toLowerCase().includes(this.stateFilter.toLowerCase()) &&
-      task.responsible.toLowerCase().includes(this.responsibleFilter.toLowerCase())
+      task.resposibleName.toLowerCase().includes(this.responsibleNameFilter.toLowerCase())
     );
   }
 }

@@ -1,18 +1,15 @@
 <div class="signup">
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <label class="title" >Signup</label>
-        <input type="name" formControlName="firstName" placeholder="First Name" required>
-        <input type="name" formControlName="lastName" placeholder="Last Name" required>
+        <label class="title"> Signup </label>
+        <input type="name" formControlName="firstName" placeholder="Primeiro Nome" required>
+        <input type="name" formControlName="lastName" placeholder="Último Nome" required>
         <input type="email" formControlName="email" placeholder="Email" required>
-        <input type="text" formControlName="number" placeholder="Number" required>
+        <input type="text" formControlName="number" placeholder="Número" required>
         <input type="password" formControlName="password" placeholder="Password" required>
         <button type="submit" class="sign">Sign up</button>
-        <div class="or-log">
-		    <label class="or">or</label>
-		    <button class="log">Log In</button>
-	    </div>
+        <label class="or">or</label>
+        <button class="log" (click)="redirectToLogin()">Log In</button>
     </form>
-    <div *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</div>
-    <div *ngIf="signupError" class="error-message">{{ signupError }}</div>
-
 </div>
+<div *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</div>
+<div *ngIf="signupError" class="error-message">{{ signupError }}</div>

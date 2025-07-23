@@ -37,6 +37,10 @@ label {
 
 	&.or {
 		font-size: 1.25rem;
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+		display: flex;
 	}
 }
 
@@ -60,6 +64,7 @@ button {
 	font-weight: bold;
 	border-radius: 5px;
 	outline: none;
+	display: flex;
 	border: none;
 	display: block;
 	color: #ffffff;
@@ -67,9 +72,10 @@ button {
 	transition: .2s ease-in;
 	justify-content: center;
 	cursor: pointer;
+	margin: 7.5px auto;
 
-	&.sign {
-		margin: 25px auto;
+	&.sign{
+		margin-top: 25px;
 	}
 
 	&:hover {
@@ -78,22 +84,17 @@ button {
 }
 
 div.error-message {
-	color: #cc1b1b;
+	color: #ce3232;
 	text-align: center;
 	padding-top: 30px;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
 }
 
 
 div.success-message {
-	color: #1bcc21;
+	color: #30e836;
 	text-align: center;
 	padding-top: 30px;
-}
-
-.or-log-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 15px;
-	margin-top: 20px;
 }

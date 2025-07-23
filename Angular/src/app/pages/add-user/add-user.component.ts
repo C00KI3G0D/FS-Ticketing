@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
+import { Subscription } from 'rxjs';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-user',
@@ -8,35 +10,53 @@ import { UserService } from '../../services/user.service';
   templateUrl: './add-user.component.html',
   styleUrl: './add-user.component.scss',
 })
+
 export class AddUserComponent implements OnInit {
-  userForm!: FormGroup;
+  public open: boolean = false;
+  userForm: FormGroup;
+  userError: string = '';
+  userSuccess: string = '';
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
-      role: ['', Validators.required],
-      number: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      pass: ['', Validators.required],
+      number: ['', [Validators.required, Validators.minLength(9)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
+  ngOnInit(): void { }
+
+  toggle(): void { this.open = !this.open; }
+
   onSubmit() {
+    this.userError = '';
+    this.userSuccess = '';
+
     if (this.userForm.valid) {
-      this.userService.createUser(this.userForm.value).subscribe({
-        next: (response) => {
-          console.log('User created:', response);
-          this.userForm.reset();
-          
+      let subscription: Subscription = this.authService.user(this.userForm.value).subscribe({
+        
+        next: (response: HttpResponse<{ message: string }>) => {
+          if (response.ok === false) {
+            this.userError = response.body ? response.body.message : "Erro ao criar o utilizador'";
+            return
+          }
+          console.log(response)
+          console.log(" !");
+          this.userSuccess = 'Utilizador criado com sucesso!';
         },
-        error: (err) => {
-          console.error('Error creating user:', err);
+    
+        error: (error: HttpErrorResponse) => {
+          console.log("Error:", error);
+          this.userError = error.error.message;
+        },
+
+        complete: () => {
+          subscription.unsubscribe();
         }
       });
-    } else {
-      console.log('Form is invalid');
     }
   }
 }

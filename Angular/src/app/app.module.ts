@@ -7,14 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { WearhousesComponent } from './pages/wearhouses/wearhouses.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    WearhousesComponent,
-    NavbarComponent,
+    NavbarComponent
   ],
 
   imports: [

@@ -7,8 +7,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +19,6 @@ import crm.local.pap.dtos.SignupDTO;
 import crm.local.pap.services.JwtProvider;
 import crm.local.pap.services.UserService;
 
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthenticationController {
@@ -30,16 +27,12 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    @SuppressWarnings("unused")
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private UserService userService; 
     @Autowired
     private JwtProvider jwtProvider;
 
     
-    @CrossOrigin(origins = "*")
+    @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
@@ -48,13 +41,12 @@ public class AuthenticationController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
 
-        return ResponseEntity.ok(new JwtAuthResponse(token));
+        return new ResponseEntity<JwtAuthResponse>(new JwtAuthResponse(token), HttpStatus.OK);
     }
 
 
     @PostMapping("/signup")
     public ResponseEntity<MessageResponse> registerUser(@RequestBody SignupDTO signupRequest) {
-
         try {
 
             userService.registerUser(signupRequest);

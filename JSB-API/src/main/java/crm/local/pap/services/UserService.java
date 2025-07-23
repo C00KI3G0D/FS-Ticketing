@@ -29,7 +29,7 @@ public class UserService {
     public User registerUser(SignupDTO signupRequest) {
 
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
-            throw new RuntimeException("Error: Email já está vinculado!");
+            throw new RuntimeException("Error: Este Email Pertence a um Utilizador Existente!");
         }
 
         User user = new User();
