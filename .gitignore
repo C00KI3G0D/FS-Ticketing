@@ -13,9 +13,6 @@ Angular/pnpm-debug.log*
 Angular/.vscode/
 Angular/.angular/
 
-# Jetbrains settings
-JSB-API/.idea
-
 # Logs
 logs/
 *.log

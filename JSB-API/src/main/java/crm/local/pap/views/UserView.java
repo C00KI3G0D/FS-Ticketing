@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import crm.local.pap.models.User;
 import crm.local.pap.repositories.UserRepository;
 
+
 @RestController
 @RequestMapping("/api/users")
 public class UserView {
