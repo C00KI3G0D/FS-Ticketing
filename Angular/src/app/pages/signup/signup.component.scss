@@ -7,9 +7,9 @@
 	background-attachment: fixed;
 }
 
-.signup{
-	width: 25vw;
-	height: 80vh;
+.signup {
+	width: 300px;
+	height: 500px;
 	padding: 0px;
 	background: inherit;
 	overflow: hidden;
@@ -22,62 +22,78 @@
 	box-shadow: rgba(.10, .10, .10, .10) 0px 54px 55px, rgba(.12, .12, .12, .12) 0px -12px 30px, rgba(.12, .12, .12, .12) 0px 4px 6px, rgba(0, 0, 0, 0) 0px 12px 13px, rgba(0, 0, 0, .09) 0px -3px 5px;
 	backdrop-filter: blur(25px);
 	-webkit-backdrop-filter: blur(50%);
-	
 }
 
-label{
+label {
 	color: #fff;
-	font-size: 2.5em;
-	justify-content: center;
-	display: flex;
-	font-weight: bold;
 	cursor: default;
+
+	&.title {
+		font-size: 2.5rem;
+		justify-content: center;
+		font-weight: bold;
+		display: flex;
+	}
+
+	&.or {
+		font-size: 1.25rem;
+	}
 }
 
-input{
+input {
 	width: 80%;
 	height: 20px;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
-	margin: 10px auto;
+	margin: 15px auto;
 	padding: 20px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
 }
 
-button{
+button {
 	width: 60%;
 	height: 40px;
-	margin: auto;
-	justify-content: center;
-	display: block;
-	color: #fff;
-	background: #502f8d;
-	font-size: 1em;
+	font-size: 1.375rem;
 	font-weight: bold;
+	border-radius: 5px;
 	outline: none;
 	border: none;
-	border-radius: 5px;
-	transition: .2s ease-in;
-	cursor: pointer;
-}
-
-button.sign{
-	margin-top: 25px;
-}
-
-button.log{
-	margin-top: 5px;
-}
-
-button:hover{
+	display: block;
+	color: #ffffff;
 	background: #420da5;
+	transition: .2s ease-in;
+	justify-content: center;
+	cursor: pointer;
+
+	&.sign {
+		margin: 25px auto;
+	}
+
+	&:hover {
+		background: #502f8d;
+	}
 }
 
-div.error-message{
-	color: #fff;
+div.error-message {
+	color: #cc1b1b;
 	text-align: center;
-	
+	padding-top: 30px;
+}
+
+
+div.success-message {
+	color: #1bcc21;
+	text-align: center;
+	padding-top: 30px;
+}
+
+.or-log-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 20px;
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -38,14 +39,19 @@ export class SignupComponent implements OnInit {
 
     if (this.signupForm.valid) {
       let subscription: Subscription = this.userService.signup(this.signupForm.value).subscribe({
-        next: (response: string) => {
+        next: (response: HttpResponse<{ message: string }>) => {
+          if(response.ok === false) {
+            this.signupError = response.body ? response.body.message : "Erro ao criar o utilizador'";
+            return
+          }
+          console.log(response)
           console.log(" !");
-          this.signupSuccess = 'User signed up successfully!';
+          this.signupSuccess = 'Utilizador criado com sucesso!';
           this.router.navigate(['/']);
         },
-        error: (error: 200) => {
+        error: (error: HttpErrorResponse) => {
           console.log("Error:", error);
-          this.signupError = 'Utilizador criado com sucesso';
+          this.signupError = error.error.message;
         },
         complete: () => {
           subscription.unsubscribe();

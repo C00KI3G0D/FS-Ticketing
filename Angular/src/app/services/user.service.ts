@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable, Inject } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/User";
+import { SignupRequest } from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
     private signupUrl = "http://localhost:8080/api/auth/signup"
 
     constructor(
-        @Inject(HttpClient) private httpClient: HttpClient
+        private httpClient: HttpClient
     ) {
 
     }
@@ -27,11 +28,15 @@ export class UserService {
         return this.httpClient.post(this.apiUrl,userData);
     }
 
-    login(credentials: {email: string, password: string}): Observable<any> {
-        return this.httpClient.post<String>(this.loginUrl, credentials);
+    login(credentials: {email: string, password: string}): Observable<HttpResponse<{ message: string }>> {
+        return this.httpClient.post<HttpResponse<{ message: string }>>(this.loginUrl, credentials, {
+            withCredentials: true
+        });
     }
     
-    signup(credentials: {firstName: string, lastName:string, email: string, number:String, password: string}): Observable<any> {
-        return this.httpClient.post<String>(this.signupUrl, credentials);
+    signup(credentials: SignupRequest): Observable<HttpResponse<{ message: string }>> {
+        return this.httpClient.post<HttpResponse<{ message: string }>>(this.signupUrl, credentials, {
+            withCredentials: true
+        });
     }
 }

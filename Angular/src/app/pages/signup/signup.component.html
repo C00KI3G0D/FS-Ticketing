@@ -7,9 +7,12 @@
         <input type="text" formControlName="number" placeholder="Number" required>
         <input type="password" formControlName="password" placeholder="Password" required>
         <button type="submit" class="sign">Sign up</button>
-        <label class="or">or</label>
-        <button type="button" class="log">Log In</button>
+        <div class="or-log">
+		    <label class="or">or</label>
+		    <button class="log">Log In</button>
+	    </div>
     </form>
     <div *ngIf="signupSuccess" class="success-message">{{ signupSuccess }}</div>
+    <div *ngIf="signupError" class="error-message">{{ signupError }}</div>
+
 </div>
-<div *ngIf="signupError" class="error-message">{{ signupError }}</div>
