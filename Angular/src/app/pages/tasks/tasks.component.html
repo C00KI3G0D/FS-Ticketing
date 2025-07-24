@@ -1,30 +1,30 @@
 <div class="table">
   <div class="table-header">
-
-  </div>
+        <button  class="add-task-btn" onclick="location.href='http://localhost:4200/addtask';">Add Task</button>
+    </div>
   <ul class="tasks">
     <li>
       <div>ID</div>
-      <div>Topic</div>
-      <div>Client's Name</div>
-      <div>State</div>
-      <div>Responsible</div>
+      <div>Assunto</div>
+      <div>Nome do Cliente</div>
+      <div>Estado</div>
+      <div>Responsável</div>
     </li>
 
     <li class="selection">
-      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="idFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="taskIdFilter" (input)="filterTasks()"></div>
       <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="topicFilter" (input)="filterTasks()"></div>
       <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="clientNameFilter" (input)="filterTasks()"></div>
       <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="stateFilter" (input)="filterTasks()"></div>
-      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="responsibleFilter" (input)="filterTasks()"></div>
+      <div class="search"><input type="text" placeholder="Pesquisar" [(ngModel)]="responsibleNameFilter" (input)="filterTasks()"></div>
     </li>
 
     <li *ngFor="let task of filteredTasks">
-      <div>{{ task.id }}</div>
+      <div>{{ task.taskId }}</div>
       <div>{{ task.topic }}</div>
       <div>{{ task.clientName }}</div>
       <div>{{ task.state }}</div>
-      <div>{{ task.responsible }}</div>
+      <div>{{ task.resposibleName }}</div>
     </li>
   </ul>
 </div>

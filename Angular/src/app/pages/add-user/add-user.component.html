@@ -6,7 +6,7 @@
         <input type="email" formControlName="email" placeholder="Email" required>
         <input type="text" formControlName="number" placeholder="Número" required>
         <input type="password" formControlName="password" placeholder="Password Genérica" required>
-        <button type="submit" class="add">Criar Perfil</button>
+        <button type="submit" class="add" (click)="redirectToUsers()">Criar Perfil</button>
     </form>
 </div>
 <div *ngIf="userSuccess" class="success-message">{{ userSuccess }}</div>

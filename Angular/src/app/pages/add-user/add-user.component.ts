@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
@@ -17,7 +18,7 @@ export class AddUserComponent implements OnInit {
   userError: string = '';
   userSuccess: string = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.userForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -30,6 +31,8 @@ export class AddUserComponent implements OnInit {
   ngOnInit(): void { }
 
   toggle(): void { this.open = !this.open; }
+
+  redirectToUsers(): void { this.router.navigate(['/users']); }
 
   onSubmit() {
     this.userError = '';

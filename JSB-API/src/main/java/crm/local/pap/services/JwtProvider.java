@@ -35,7 +35,7 @@ public class JwtProvider {
                 .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(privateKey)
+                .signWith(  )
                 .compact();
     }
 
